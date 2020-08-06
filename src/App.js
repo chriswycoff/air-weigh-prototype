@@ -1,50 +1,24 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, BSpan } from 'bootstrap-4-react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import {BrowserRouter,Route,Switch} from 'react-router-dom';
+import Home from './components/Home';
+import About from './components/About';
+import Contact from './components/Contact';
 
-const HomeItems = props => (
-  <React.Fragment>
-    <Nav.ItemLink href="#/" active>
-      Home
-      <BSpan srOnly>(current}</BSpan>
-    </Nav.ItemLink>
-    <Nav.ItemLink href="#/login">
-      Login
-    </Nav.ItemLink>
-  </React.Fragment>
-)
-
-const LoginItems = props => (
-  <React.Fragment>
-    <Nav.ItemLink href="#/">
-      Home
-    </Nav.ItemLink>
-    <Nav.ItemLink href="#/login" active>
-      Login
-      <BSpan srOnly>(current}</BSpan>
-    </Nav.ItemLink>
-  </React.Fragment>
-)
-
-export default class Navigator extends Component {
+class App extends Component {
   render() {
     return (
-      <Navbar expand="md" dark bg="dark" fixed="top">
-        <Navbar.Brand href="#">Air-Weigh</Navbar.Brand>
-        <Navbar.Toggler target="#navbarsExampleDefault" />
-
-        <Navbar.Collapse id="navbarsExampleDefault">
-          <Navbar.Nav mr="auto">
-            <HashRouter>
-              <Switch>
-                <Route exact path="/" component={HomeItems} />
-                <Route exact path="/login" component={LoginItems} />
-              </Switch>
-            </HashRouter>
-          </Navbar.Nav>
-          <Navbar.Text>Greetings</Navbar.Text>
-        </Navbar.Collapse>
-      </Navbar>
-    )
+      <BrowserRouter>
+      <div className="App">
+        <Navbar/>
+        <Switch>
+          <Route exact path="/" component={Home}/>
+          <Route path="/about" component={About}/>
+          <Route path="/contact" component={Contact}/>
+        </Switch>
+      </div>
+      </BrowserRouter>
+    );
   }
 }
+export default App;
